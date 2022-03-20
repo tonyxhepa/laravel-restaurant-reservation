@@ -24,15 +24,15 @@
                                         </th>
                                         <th scope="col"
                                             class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                            Color
+                                            Guest
                                         </th>
                                         <th scope="col"
                                             class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                            Category
+                                            Staus
                                         </th>
                                         <th scope="col"
                                             class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                            Price
+                                            Location
                                         </th>
                                         <th scope="col" class="relative py-3 px-6">
                                             <span class="sr-only">Edit</span>
@@ -40,75 +40,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($tables as $table)
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $table->name }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                {{ $table->guest_number }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                {{ $table->status->name }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                {{ $table->location->name }}
+                                            </td>
+                                            <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                                <div class="flex space-x-2">
+                                                    <a href="{{ route('admin.tables.edit', $table->id) }}"
+                                                        class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-lg  text-white">Edit</a>
+                                                    <form
+                                                        class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white"
+                                                        method="POST"
+                                                        action="{{ route('admin.tables.destroy', $table->id) }}"
+                                                        onsubmit="return confirm('Are you sure?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <td
-                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            Apple MacBook Pro 17"
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Sliver
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Laptop
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            $2999
-                                        </td>
-                                        <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                            <a href="#"
-                                                class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <td
-                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            Apple Imac 27"
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            White
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Desktop Pc
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            $1999
-                                        </td>
-                                        <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                            <a href="#"
-                                                class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-white dark:bg-gray-800">
-                                        <td
-                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            Apple Magic Mouse 2
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            White
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Accessories
-                                        </td>
-                                        <td
-                                            class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            $99
-                                        </td>
-                                        <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                            <a href="#"
-                                                class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
