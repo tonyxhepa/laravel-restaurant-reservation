@@ -121,9 +121,9 @@
         </div>
         <div class="container w-full px-5 py-6 mx-auto">
             <div class="grid lg:grid-cols-4 gap-y-6">
-                @foreach ($specials->menus as $menu)
+                @forelse ($specials->menus as $menu)
                     <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
-                        <img class="w-full h-48" src="{{ Storage::url($menu->image) }}" alt="Image" />
+                        <img class="w-full h-48" src="{{ asset("images/menus/" . $menu->image) }}" alt="Image" />
                         <div class="px-6 py-4">
                             <h4 class="mb-3 text-xl font-semibold tracking-tight text-green-600 uppercase">
                                 {{ $menu->name }}</h4>
@@ -133,7 +133,19 @@
                             <span class="text-xl text-green-600">${{ $menu->price }}</span>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
+                        <img class="w-full h-48" src="https://cdn.pixabay.com/photo/2017/08/03/13/30/people-2576336_960_720.jpg"
+                            alt="Image" />
+                        <div class="px-6 py-4">
+                            <h4 class="mb-3 text-xl font-semibold tracking-tight text-green-600 uppercase">
+                                No Menu Available</h4>
+                            <p class="leading-normal text-gray-700">No Menu Available.</p>
+                        </div>
+                        <div class="flex items  -center justify-between p-4">
+                            <span class="text-xl text-green-600">$0.00</span>
+                        </div>   
+                @endforelse
             </div>
         </div>
     </section>
